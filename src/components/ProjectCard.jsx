@@ -67,7 +67,11 @@ export default function ProjectCard({ project }) {
         alt={imageAlt}
         loading="lazy"
         decoding="async"
-        className={imageBorder ? "img-border project-image" : "project-image"}
+        className={
+          imageBorder
+            ? "img-border project-image order-first md:order-last"
+            : "project-image order-first md:order-last"
+        }
       />
     </article>
   );

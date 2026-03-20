@@ -50,16 +50,8 @@ export const projects = [
     id: "troflixx",
     title: "Troflixx",
     description:
-      "Troflixx is a movie discovery web application that I built using a movie API. The goal of the project was to provide users with an easy way to explore trending films, search for specific titles, and view detailed information about each movie. In building Troflixx, I focused on learning how to fetch and display data from APIs while designing a clean, responsive interface that makes browsing enjoyable.",
-    stack: [
-      "React (Vite)",
-      "Tailwind CSS",
-      "TanStack Query",
-      "Appwrite",
-      "TMDB API",
-      "Playwright",
-      "GitHub Actions",
-    ],
+      "A movie discovery app with fast search, trending views, and detailed movie pages powered by live TMDB data.",
+    stack: ["React (Vite)", "Tailwind CSS", "TanStack Query", "TMDB API"],
     image: "/troflixx.png",
     imageAlt:
       "Magenta Lime layout, featuring albums, reviews, a playlist, and an audio interface.",
@@ -69,14 +61,12 @@ export const projects = [
     id: "mentorbridge",
     title: "MentorBridge",
     description:
-      "The idea behind the project is to make mentorship opportunities more accessible by allowing mentees to find mentors based on skills, goals, or shared interests. Building MentorBridge helped me practice designing user flows, managing authentication, and creating a professional, community-driven platform that solves a real-world problem.",
+      "A mentorship platform where mentees discover mentors by skills and goals, with secure auth and structured profile data.",
     stack: [
       "Next.js (App Router)",
-      "React 19 + TypeScript",
-      "Tailwind CSS",
+      "TypeScript",
       "Prisma + PostgreSQL",
-      "NextAuth (Google + Credentials)",
-      "Vitest + React Testing Library",
+      "NextAuth",
     ],
     image: "/Mentorbridge.png",
     imageAlt:
@@ -87,8 +77,8 @@ export const projects = [
     id: "wordoon",
     title: "Wordoon",
     description:
-      "Woordoon is a fun and interactive word game I built, inspired by the popular Wordle. The game challenges players to guess words within a limited number of attempts, making it both entertaining and mentally stimulating. While the core idea is simple, I focused on adding my own touch by designing a smooth user interface, implementing clear game logic, and ensuring the game works seamlessly on both desktop and mobile devices.",
-    stack: ["React (Vite)", "TypeScript", "Tailwind CSS", "Game State Logic"],
+      "A Wordle-inspired game with clean UI and responsive gameplay, focused on smooth interactions and clear feedback.",
+    stack: ["React (Vite)", "TypeScript", "Tailwind CSS"],
     image: "/project-wordoon.svg",
     imageAlt:
       "Our Team page featuring 6 images of people in 2 rows with social media icons overlapping each image.",
@@ -100,40 +90,42 @@ export const projects = [
 
 export const footerColumns = [
   {
-    id: "blogging",
-    heading: "Blogging:",
+    id: "portfolio",
+    heading: "Portfolio:",
     links: [
-      { label: "learntoteach.tech", href: "https://learntoteach.tech/" },
+      { label: "GitHub Profile", href: "https://github.com/wrldcodes" },
       {
-        label: "Microblog open source contributions",
-        href: "https://github.com/microdotblog",
+        label: "LinkedIn",
+        href: "http://linkedin.com/in/jubril-elebute",
       },
+      { label: "Download CV", href: "/Jubril-Elebute-CV.pdf" },
+      { label: "Project Worksheet", href: personal.worksheetUrl },
     ],
   },
   {
-    id: "opensource",
-    heading: "Open Source:",
+    id: "stack",
+    heading: "Project Stack:",
     links: [
-      { label: "This-social / that-website", href: null },
-      { label: "that / angular-website", href: null },
-      { label: "Them / docs", href: null },
+      { label: "React", href: "https://react.dev/" },
+      { label: "Vite", href: "https://vite.dev/" },
+      { label: "Tailwind CSS", href: "https://tailwindcss.com/" },
     ],
   },
   {
-    id: "courses",
-    heading: "Other Courses:",
+    id: "workflow",
+    heading: "Workflow:",
     links: [
       {
-        label: "My Frontend Masters courses",
-        href: "https://frontendmasters.com/teachers/jen-kramer/",
+        label: "GSAP",
+        href: "https://gsap.com/",
       },
       {
-        label: "Personal Portfolio Website course",
-        href: "https://frontendmasters.com/courses/portfolio-website/",
+        label: "GitHub Actions",
+        href: "https://github.com/features/actions",
       },
       {
-        label: "Intermediate HTML & CSS course",
-        href: "https://frontendmasters.com/courses/intermediate-html-css/",
+        label: "Playwright",
+        href: "https://playwright.dev/",
       },
     ],
   },

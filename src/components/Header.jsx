@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { personal } from "../data/portfolio";
+import { FaMoon, FaSun } from "react-icons/fa6";
 
 const NAV_ITEMS = [
   { id: "home", label: "Home" },
@@ -29,7 +30,7 @@ export default function Header() {
   // Active link highlighting via IntersectionObserver
   useEffect(() => {
     const sections = NAV_ITEMS.map((item) =>
-      document.getElementById(item.id)
+      document.getElementById(item.id),
     ).filter(Boolean);
     if (!sections.length) return;
 
@@ -42,7 +43,7 @@ export default function Header() {
         if (!visible) return;
         setActiveSection(visible.target.id);
       },
-      { threshold: [0.15, 0.35, 0.6], rootMargin: "-15% 0px -70% 0px" }
+      { threshold: [0.15, 0.35, 0.6], rootMargin: "-15% 0px -70% 0px" },
     );
 
     sections.forEach((s) => observer.observe(s));
@@ -83,64 +84,42 @@ export default function Header() {
           {personal.name}
         </a>
 
-        <nav
-          className="site-nav flex flex-nowrap overflow-x-auto whitespace-nowrap justify-center sm:justify-end gap-2"
-          aria-label="Primary navigation"
-        >
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`site-nav-link ${
-                activeSection === item.id ? "is-active" : ""
-              }`}
-              aria-current={activeSection === item.id ? "page" : undefined}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToId(item.id);
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="flex w-full items-center justify-center gap-2 sm:w-auto sm:justify-end">
+          <nav
+            className="site-nav flex flex-nowrap overflow-x-auto whitespace-nowrap justify-center sm:justify-end gap-2"
+            aria-label="Primary navigation"
+          >
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`site-nav-link ${
+                  activeSection === item.id ? "is-active" : ""
+                }`}
+                aria-current={activeSection === item.id ? "page" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId(item.id);
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
 
-        <button
-          type="button"
-          className="theme-icon-btn"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-        >
-          {theme === "dark" ? (
-            // Sun icon
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M12 18a6 6 0 1 0 0-12a6 6 0 0 0 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM3 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Zm16 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1ZM5.03 5.03a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.42l-.7-.7a1 1 0 0 1 0-1.42Zm12.23 12.23a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.42l-.7-.7a1 1 0 0 1 0-1.42ZM18.97 5.03a1 1 0 0 1 0 1.41l-.7.7a1 1 0 1 1-1.41-1.42l.7-.7a1 1 0 0 1 1.41 0ZM6.74 17.26a1 1 0 0 1 0 1.41l-.7.7a1 1 0 1 1-1.41-1.42l.7-.7a1 1 0 0 1 1.41 0Z"
-              />
-            </svg>
-          ) : (
-            // Moon icon
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M21 12.79A9 9 0 0 1 11.21 3a7 7 0 1 0 9.79 9.79Z"
-              />
-            </svg>
-          )}
-        </button>
+          <button
+            type="button"
+            className="theme-icon-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+          >
+            {theme === "dark" ? (
+              <FaSun size={20} aria-hidden="true" />
+            ) : (
+              <FaMoon size={20} aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </div>
     </header>
   );
