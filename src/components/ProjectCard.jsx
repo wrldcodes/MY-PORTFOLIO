@@ -7,7 +7,8 @@ import usePrefersReducedMotion from "../lib/hooks/usePrefersReducedMotion";
  * Individual project card.
  */
 export default function ProjectCard({ project }) {
-  const { title, description, stack, image, imageAlt, imageBorder } = project;
+  const { title, description, stack, image, imageAlt, imageBorder, liveUrl } =
+    project;
 
   const cardRef = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -61,6 +62,16 @@ export default function ProjectCard({ project }) {
             </li>
           ))}
         </ul>
+        {liveUrl ? (
+          <a
+            href={liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-link"
+          >
+            View Live Project
+          </a>
+        ) : null}
       </div>
       <img
         src={image}
