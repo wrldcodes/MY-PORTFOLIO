@@ -49,6 +49,7 @@ export const projects = [
   {
     id: "troflixx",
     title: "Troflixx",
+    liveUrl: "https://troflixx.vercel.app",
     description:
       "A movie discovery app with fast search, trending views, and detailed movie pages powered by live TMDB data.",
     stack: ["React (Vite)", "Tailwind CSS", "TanStack Query", "TMDB API"],
@@ -60,6 +61,7 @@ export const projects = [
   {
     id: "mentorbridge",
     title: "MentorBridge",
+    liveUrl: "https://mentorbridge-pi.vercel.app",
     description:
       "A mentorship platform where mentees discover mentors by skills and goals, with secure auth and structured profile data.",
     stack: [
@@ -76,6 +78,7 @@ export const projects = [
   {
     id: "wordoon",
     title: "Wordoon",
+    liveUrl: null,
     description:
       "A Wordle-inspired game with clean UI and responsive gameplay, focused on smooth interactions and clear feedback.",
     stack: ["React (Vite)", "TypeScript", "Tailwind CSS"],
