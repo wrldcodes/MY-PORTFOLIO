@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   authors: [{ name: site.name, url: site.url }],
   openGraph: { type: "website", url: site.url, siteName: site.name, title: site.title, description: site.description, locale: "en_NG" },
   twitter: { card: "summary_large_image", title: site.title, description: site.description, creator: "@wolaElebute" },
+  verification: { google: "riZ_H-pG0Gpt3Wxj-cGc3KB6epoYLMt0k_VeRLvPeE0" },
 };
 
 export const viewport: Viewport = {
