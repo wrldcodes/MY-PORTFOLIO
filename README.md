@@ -1,16 +1,29 @@
-# React + Vite
+# Jubril Elebute: portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Next.js (App Router), TypeScript, plain CSS. Server Components by default; client code only where the browser is needed.
 
-Currently, two official plugins are available:
+## Run it
+```bash
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm lint && pnpm typecheck && pnpm build
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Where things live
+- `lib/content.ts`: all text, projects, stack and links. **Edit this to change the site.**
+- `components/`: one small component per section.
+  - `Nav.tsx`, `CopyEmail.tsx`: client components. Their only state is "menu open" and "copy message".
+  - `Effects.tsx`, `Network.tsx`: client components that touch the DOM directly (refs, no state, no re-renders).
+  - Everything else is a Server Component and ships no JavaScript.
+- `app/layout.tsx`: fonts, metadata, JSON-LD (Person, WebSite, ProfilePage).
+- `app/robots.ts`, `app/sitemap.ts`, `app/opengraph-image.tsx`, `public/llms.txt`: SEO and AI-crawler files.
+- `app/globals.css`: design tokens (dark and light), layout and motion.
 
-## React Compiler
+## Before you deploy
+1. Set `NEXT_PUBLIC_SITE_URL` in Vercel to your real domain. It drives canonical URLs, the sitemap and structured data.
+2. Fonts load from Google Fonts at build time, so the first build needs internet access.
+3. Put the site URL on your GitHub, LinkedIn and X profiles, then add the site to Google Search Console and submit `/sitemap.xml`.
+4. Run Lighthouse on the deployed URL and check the mobile menu on a real phone.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Not included yet
+Vitest unit tests, a Playwright smoke test, and GSAP/Lenis smooth scrolling. The current motion is CSS plus small DOM effects.

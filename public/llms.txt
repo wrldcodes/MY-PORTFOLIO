@@ -1,0 +1,12 @@
+# Jubril Elebute
+
+> Software engineer based in Lagos, Nigeria. Builds TypeScript, Next.js and PostgreSQL applications with authentication, role-based access and tests. Background in biochemistry (Lagos State University).
+
+## Projects
+- [Aláfíà](https://alafia-ara.vercel.app): community health platform connecting patients and clinics. Source: https://github.com/wrldcodes/alafia
+- [MentorBridge](https://mentorbridge-pi.vercel.app): mentorship platform with role-based dashboards and session booking. Source: https://github.com/wrldcodes/MentorBridge
+
+## Links
+- GitHub: https://github.com/wrldcodes
+- LinkedIn: https://www.linkedin.com/in/jubril-elebute/
+- X: https://x.com/wolaElebute
