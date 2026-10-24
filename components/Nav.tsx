@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navLinks, site, socials } from "@/lib/content";
 
@@ -25,9 +26,9 @@ export function Nav() {
     <>
       <nav>
         <div className="wrap">
-          <a className="logo" href="#top" aria-label={`${site.name}, home`}>
+          <Link className="logo" href="/" aria-label={`${site.name}, home`}>
             <span className="nm">{site.name}</span>
-          </a>
+          </Link>
           <div className="lk">
             {navLinks.map((l) => (
               <a key={l.href} href={l.href}>{l.label}</a>
