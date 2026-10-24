@@ -1,7 +1,4 @@
 import nextVitals from "eslint-config-next/core-web-vitals";
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
 
 const config = [...nextVitals, { ignores: [".next/**", "node_modules/**"] }];
 
