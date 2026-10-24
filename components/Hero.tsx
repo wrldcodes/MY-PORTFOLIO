@@ -2,6 +2,11 @@ import Image from "next/image";
 import { Network } from "./Network";
 import { site } from "@/lib/content";
 
+/** One span per letter, so LetterWeight can flex each one's weight. */
+function Letters({ text }: { text: string }) {
+  return <>{[...text].map((c, i) => <span key={i} className="ch">{c}</span>)}</>;
+}
+
 export function Hero() {
   return (
     <header id="hero">
@@ -9,9 +14,9 @@ export function Hero() {
       <div className="wrap hero-in" id="top">
         <div>
           <div className="mono">Software engineer · {site.location}</div>
-          <h1>
-            <span><i>Jubril</i></span>
-            <span><i>Elebute</i></span>
+          <h1 aria-label={site.name}>
+            <span><i aria-hidden="true"><Letters text="Jubril" /></i></span>
+            <span><i aria-hidden="true"><Letters text="Elebute" /></i></span>
           </h1>
           <p className="lead">
             I started in biochemistry, studying how complex systems behave. Now I’m a software engineer building products with authentication, role-based access and tests, in TypeScript, Next.js and PostgreSQL.

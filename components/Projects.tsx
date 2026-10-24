@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { projects } from "@/lib/content";
 
 // Each project opens with a native <details>, so no JavaScript or state is needed.
@@ -21,6 +22,7 @@ export function Projects() {
                 <ul>{p.points.map((pt) => <li key={pt}>{pt}</li>)}</ul>
                 <div className="chips">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>
                 <p className="links">
+                  <Link className="cs-open" href={`/work/${p.slug}`}>Read case study →</Link>
                   <a href={p.live} target="_blank" rel="noopener noreferrer">Live site</a>
                   <a href={p.repo} target="_blank" rel="noopener noreferrer">GitHub</a>
                 </p>
