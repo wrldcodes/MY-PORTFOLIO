@@ -17,14 +17,15 @@ export const socials = [
 ];
 
 export const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Stack", href: "#stack" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Stack", href: "/#stack" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const projects = [
   {
+    slug: "alafia",
     name: "Aláfíà",
     kind: "Health platform",
     summary:
@@ -40,6 +41,7 @@ export const projects = [
     image: { src: "/images/alafia.jpg", width: 1100, height: 657, alt: "Aláfíà landing page: Healthcare that reaches everyone" },
   },
   {
+    slug: "mentorbridge",
     name: "MentorBridge",
     kind: "Mentorship platform",
     summary:
@@ -71,3 +73,66 @@ export const principles = [
   "Write code your future self can read.",
   "Learn deeply, not just quickly.",
 ];
+
+/** Which tools connect to which in the stack graph. */
+export const stackLinks: [string, string][] = [
+  ["React", "Next.js"], ["Next.js", "Tailwind"], ["Next.js", "GSAP"], ["React", "Framer Motion"], ["Next.js", "TypeScript"],
+  ["TypeScript", "Zod"], ["Next.js", "Prisma"], ["Prisma", "PostgreSQL"], ["Node.js", "Express"], ["Node.js", "Next.js"],
+  ["Express", "MongoDB"], ["Next.js", "JWT"], ["JWT", "RBAC"], ["OAuth 2.0", "JWT"], ["Vitest", "TypeScript"],
+  ["Vitest", "Playwright"], ["GitHub Actions", "Vitest"], ["GitHub Actions", "Vercel"], ["Next.js", "Vercel"],
+  ["ESLint", "TypeScript"], ["Prisma", "TypeScript"],
+];
+
+export type CaseStudy = {
+  number: string;
+  headline: string;
+  problem: string;
+  built: string[];
+  flow: [string, string][];
+  decisions: [string, string][];
+  next: string;
+};
+
+/** Case-study copy, keyed by project slug. */
+export const caseStudies: Record<string, CaseStudy> = {
+  alafia: {
+    number: "01",
+    headline: "A two-sided community health platform for Nigeria.",
+    problem:
+      "Patients need an easy way to find and book clinics, and clinics need tools to manage appointments and records. Aláfíà puts both on one platform, designed for low-data use on basic smartphones and simple onboarding by role.",
+    built: [
+      "Patients register, sign in, book appointments and view their records and prescriptions",
+      "Clinics, staff and doctors manage patients, appointments, slots and medical records",
+      "Separate dashboards for patients, clinics and doctors",
+      "A REST API behind every dashboard, with Cloudinary for medical attachments",
+    ],
+    flow: [["Browser", "Patient, clinic or doctor"], ["proxy.ts", "JWT checked at the edge"], ["Route handlers", "REST API"], ["Prisma", "Typed queries"], ["PostgreSQL", "One data model"]],
+    decisions: [
+      ["Sessions in HTTP-only cookies", "Tokens are signed JWTs kept in HTTP-only cookies, so page scripts cannot read them."],
+      ["Checked before the page loads", "Role-based protection runs in Next.js 16’s proxy.ts, ahead of any dashboard route."],
+      ["Validated at the boundary", "Zod schemas check input on forms and API routes before it reaches the database."],
+      ["Route groups by role", "Marketing site, auth flows and each dashboard live in separate route groups."],
+    ],
+    next: "mentorbridge",
+  },
+  mentorbridge: {
+    number: "02",
+    headline: "A mentorship platform that connects mentees with mentors.",
+    problem:
+      "Mentees need a clear way to find the right mentor, and mentors need a way to manage requests and availability. MentorBridge brings discovery, structured requests and session booking into one platform.",
+    built: [
+      "Role-based onboarding and dashboards for mentees, mentors and admins",
+      "Mentor discovery with filters",
+      "A request lifecycle: send, accept or reject",
+      "Mentor availability management and session booking from open slots",
+    ],
+    flow: [["Browser", "Mentee, mentor or admin"], ["NextAuth", "Credentials and Google"], ["Route handlers", "Protected, role-aware"], ["Prisma", "Typed queries"], ["PostgreSQL", "Relational data"]],
+    decisions: [
+      ["Two ways to sign in", "Credentials and Google OAuth both go through NextAuth."],
+      ["Role-aware routing", "Protected routes redirect by role, so each user lands on the right dashboard."],
+      ["Tested", "Vitest and React Testing Library cover the app."],
+      ["Checked on every push", "GitHub Actions runs the checks and strict TypeScript catches the rest."],
+    ],
+    next: "alafia",
+  },
+};

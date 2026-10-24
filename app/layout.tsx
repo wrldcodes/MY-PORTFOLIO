@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Effects } from "@/components/Effects";
+import { Intro } from "@/components/Intro";
+import { Nav } from "@/components/Nav";
+import { ProjectPreview } from "@/components/ProjectPreview";
+import { LetterWeight } from "@/components/LetterWeight";
+import { WordReveal } from "@/components/WordReveal";
 import { site, socials } from "@/lib/content";
 import "./globals.css";
 
@@ -26,6 +32,10 @@ export const viewport: Viewport = {
   ],
 };
 
+// Plays the intro once per browser session, and never for people who prefer reduced motion.
+// It runs before first paint, and a 5s failsafe means it can never trap the page.
+const introScript = `(function(){var r=document.documentElement,m=false,s=false;try{m=matchMedia("(prefers-reduced-motion:reduce)").matches}catch(e){}try{s=!!sessionStorage.getItem("seen")}catch(e){}if(!m&&!s)r.classList.add("pre");setTimeout(function(){r.classList.remove("pre")},5000)})();`;
+
 // Structured data so search engines and AI assistants know who this site is about.
 const personId = `${site.url}/#person`;
 const jsonLd = {
@@ -50,10 +60,22 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${mono.variable} ${serif.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${mono.variable} ${serif.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
+      </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+        <Intro />
+        <Effects />
+        <LetterWeight />
+        <WordReveal />
+        <ProjectPreview />
+        <Nav />
         {children}
+        <footer>
+          <div className="wrap mono">© {new Date().getFullYear()} {site.name} · {site.location}</div>
+        </footer>
       </body>
     </html>
   );
