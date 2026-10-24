@@ -10,3 +10,7 @@
 - GitHub: https://github.com/wrldcodes
 - LinkedIn: https://www.linkedin.com/in/jubril-elebute/
 - X: https://x.com/wolaElebute
+
+## Case studies
+- Aláfíà: https://jubrilelebute.vercel.app/work/alafia
+- MentorBridge: https://jubrilelebute.vercel.app/work/mentorbridge

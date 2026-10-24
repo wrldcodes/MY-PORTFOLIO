@@ -16,18 +16,28 @@ export function Effects() {
     const finePointer = matchMedia("(pointer: fine)").matches;
     const cleanups: Array<() => void> = [];
 
-    // Reveal each marked element once, when it scrolls into view.
+    // Reveal marked elements once their container scrolls into view. (Watching the
+    // element itself fails: it starts fully clipped, so it never counts as visible.)
+    const targets = new Map<Element, Element[]>();
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            e.target.classList.add("in");
+            targets.get(e.target)?.forEach((el) => el.classList.add("in"));
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.15 },
+      { rootMargin: "0px 0px -12% 0px" },
     );
-    document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+    document.querySelectorAll("[data-reveal]").forEach((el) => {
+      const parent = el.parentElement;
+      if (!parent) return;
+      if (!targets.has(parent)) {
+        targets.set(parent, []);
+        io.observe(parent);
+      }
+      targets.get(parent)?.push(el);
+    });
     cleanups.push(() => io.disconnect());
 
     // Scroll: progress bar, marquee rows, photo parallax. One rAF-throttled listener.

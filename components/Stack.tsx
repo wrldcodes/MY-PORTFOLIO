@@ -1,23 +1,20 @@
+import { Molecule } from "./Molecule";
 import { stack } from "@/lib/content";
 
 export function Stack() {
   return (
     <section id="stack">
+      <Molecule />
       <div className="wrap">
         <h2 data-reveal>The stack</h2>
-        <p className="sub">The tools behind the work above. Move your cursor across the grid.</p>
+        <p className="sub">The tools behind the work above.</p>
+      </div>
+      {/* The graph is drawn on a canvas, so the same tools are listed here for screen readers and crawlers. */}
+      <div className="sr">
         {stack.map((g) => (
           <div key={g.group}>
-            <div className="grp mono">{g.group}</div>
-            <div className="grid">
-              {g.items.map(([symbol, name, note], i) => (
-                <div key={name} className="tile" data-reveal style={{ transitionDelay: `${i * 90}ms` }}>
-                  <s>{symbol}</s>
-                  <em>{name}</em>
-                  <small>{note}</small>
-                </div>
-              ))}
-            </div>
+            <h3>{g.group}</h3>
+            <ul>{g.items.map(([, name, note]) => <li key={name}>{name}: {note}</li>)}</ul>
           </div>
         ))}
       </div>
